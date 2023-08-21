@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  s3_api_metrics:
+    image:  private.reg.arvanstorage.ir/s3_api_metrics
+    build: s3-api-metrics
+    ports:
+      - 8000:8000
+    environment:
+      - S3_ENDPOINT=<s3-endpoint>
+      - S3_ACCESS_KEY=<s3-access-key>
+      - S3_SECRET_KEY=<s3-secret-key>
+      - S3_BUCKET_NAME=<s3-bucket-name>
+
+  s3_metrics_collector:
+    image: s3-metrics-collector
+    build: ./metrics_collector
+    ports:
+      - 8080:8080
+    environment:
+      - SOURCE=<source of origin>
+
