@@ -4,7 +4,7 @@ services:
 
   s3_api_metrics:
     image:  private.reg.arvanstorage.ir/s3_api_metrics
-    build: s3-api-metrics
+    build: ./s3_api_metrics
     ports:
       - 8000:8000
     environment:
