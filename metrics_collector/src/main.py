@@ -45,7 +45,8 @@ async def collect_s3_metrics(client: httpx.AsyncClient = Depends(get_http_client
 
     for route in ROUTES:
         try:
-            response = await client.get(f'http://s3_api_metrics:8000/{route}')
+            backend_hostname=os.getenv("BACKEND_HOSTNAME")
+            response = await client.get(f'http://{backend_hostname}:8000/{route}')
             #response.raise_for_status()
 
             data = response.json()
